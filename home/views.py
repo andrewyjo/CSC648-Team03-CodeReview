@@ -77,21 +77,6 @@ def registrationPage(request):
                 profile = profileForm.save(commit=False)
                 profile.profileID = request.user
                 profile.save()
-
-                # this next section seems superfluous...
-                userData = request.user
-                userInfo = User.objects.get(username=username)
-                accountInfo = models.Account.objects.get(accountID=userInfo.id)
-                login(request, user)
-                userID = userInfo.id
-                lastLogin = userInfo.last_login
-                is_superuser = userInfo.is_superuser
-                fname = userInfo.first_name
-                lname = userInfo.last_name
-                email = userInfo.email
-                gender = accountInfo.gender
-                dob = accountInfo.dob
-
                 return render(request, "home.html", {'userID': userID, 'fname': fname, 'lname': lname, 'email': email, 'gender': gender, 'dob': dob, 'message': "You've successfully created an account. Welcome to PlayDate!"})
             else:
                 # There was an error authenticating the newly registered user.
