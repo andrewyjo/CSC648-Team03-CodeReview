@@ -1,0 +1,78 @@
+<!--
+░█▀▀░█▀█░█▀█░▀█▀░█▀█░█▀▀░▀█▀░░░█▀▀░█░█░█▀█░█▀█░█▀█░█▀▄░▀█▀
+░█░░░█░█░█░█░░█░░█▀█░█░░░░█░░░░▀▀█░█░█░█▀▀░█▀▀░█░█░█▀▄░░█░
+░▀▀▀░▀▀▀░▀░▀░░▀░░▀░▀░▀▀▀░░▀░░░░▀▀▀░▀▀▀░▀░░░▀░░░▀▀▀░▀░▀░░▀░
+Contributors: William P
+Version: 1.5.0
+Last Updated: July 25, 2022
+Description: A general contact support page used by the django templating engine to render support forms.
+-->
+
+{% load static %}
+{% include "header.html" %}
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Register for PlayDate!</title>
+
+   <!--  <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    </link>
+    <script src="{% static 'js/register.js' %}" defer="true"></script> -->
+</head>
+
+<body>
+    <div>
+        <a href="/">
+            <h5 style="font-family: 'Gill Sans', sans-serif;color: #0d6efd; text-align: center; margin-top: 30px;">
+                <b>PlayDate</b>
+            </h5>
+        </a>
+
+        {% if status == 'Success' %}
+        <div class="success">
+            Your support request has been successfully submitted. The support staff has been notified by email and will get in contact with you soon!
+        </div>
+        {% endif %}
+
+        {% if status == 'No Staff' %}
+        <div class="success">
+            Your support request has been submitted. The support staff will be able to see your issue soon!
+        </div>
+        {% endif %}
+    </div>
+    <div class="card mx-auto mt-2" style="width: 30rem;">
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted">Contact Support:</h6>
+            <form class="support" style="width: 450px;" method="POST" action="">
+                {% csrf_token %}
+                <label for="contact">
+                    <b>{{csForm.contact.label}}</b><br>
+                    {{csForm.contact}}<br>
+                </label><br>
+                <label for="name">
+                    <b>{{csForm.name.label}}</b><br>
+                    {{csForm.name}}<br>
+                </label><br>
+                <label for="type">
+                    <b>{{csForm.type.label}}</b><br>
+                    {{csForm.type}}<br>
+                </label><br>
+                <label for="details">
+                    <b>{{csForm.details.label}}</b><br>
+                    {{csForm.details}}<br>
+                </label><br><br>
+
+                <div class="col">
+                    <button class="btn btn-primary pt-2" type="submit">
+                        Submit
+                    </button>
+                </div><br>
+            </form>
+        </div>
+    </div><br><br><br>
+
+    {% include "footer.html" %}
+
+</body>
+
+</html>

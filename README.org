@@ -1,0 +1,59 @@
+#+TITLE:CODE-REVIEW
+#+AUTHOR:Code created by Team03@CSC648 - CodeReview data amalgamated by Andy C
+#+DESCRIPTION:This repo contains sample code from our PlayDate application and is intended for Code Review purposes for Milestone 4.
+#+DATE:<2022-07-25 Mon>
+
+* PlayDate Synopsis
+Within the existing social media paradigm there is not much care for creating secure social-media ecosystems where parents and guardians can securely network and create events and groups catered towards their children or pets.
+This is where PlayDate comes in. We aim to provide a platform where parents and guardians can safely create groups and events to arrange for their children and pets. 
+Instead of incentivising group-popularity or user-volume we aim to focus on a niche target group of parents and pet-owners so they can safely create successful playdates with other similar people.
+
+* General Application Details
+In order to create our PlayDate application, we utilize the django web-framework.
+Django separates each core module into different app-folders.
+As such, our filetree looks like this.
+#+BEGIN_EXAMPLE
+PlayDate/
+├── events/
+│   ├── forms
+│   ├── models
+│   ├── templates/
+│   ├── urls
+│   └── views
+├── groups/
+│   ├── forms
+│   ├── models
+│   ├── templates/
+│   ├── urls
+│   └── views
+└── home/
+    ├── forms
+    ├── models
+    ├── templates/
+    ├── urls
+    └── views
+#+END_EXAMPLE
+
++ forms: used for generating any form pertaining to our DB tables
++ models: used for creating and specifying mySQL tables
++ urls: used for routing
++ templates/: where HTML, CSS, JS, are stored
++ views: the main code that is responsible for all specific functionalities
+
+* Code Review
+For this code review we intend to submit two parts: Part 1 is for Non-Functional Requirements used in QA testing. Part 2 is for Usabilitiy Testing used in creating "superior" functionalities.
+
+** Within this repo you will find:
+*** Part 1 - QA/Non-Functional Req's
++ Part 1: home/views.py
++ Additional html code in home/HTML/
+
+This will have the following cases:
++ 1.a) 7.1 : "The application's back-end servers should never display a user's password in cleartext"
++ 1.b) 2.1 : "Users shall receive online help from support for any assistance on the application."
+
+*** Part 2 - Usability/Superior Functionalities
++ Part 2: events/views.py
+  
+This will have the following:
++ Creating Group/Public/General Events that can be queried based on certain parameters like category(kids or pets), location, keywords. 

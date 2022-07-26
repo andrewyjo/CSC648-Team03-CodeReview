@@ -1,0 +1,161 @@
+<!--
+░█░█░█▀▀░█░░░█▀█░░░█▀█░█▀█░█▀▀░█▀▀
+░█▀█░█▀▀░█░░░█▀▀░░░█▀▀░█▀█░█░█░█▀▀
+░▀░▀░▀▀▀░▀▀▀░▀░░░░░▀░░░▀░▀░▀▀▀░▀▀▀
+Contributors: William P, Qin Geng
+Version: 1.5.0
+Last Updated: July 25, 2022
+Description: A general help page that links to the contactSupport page and renders playdate support contact data.
+-->
+
+{% load static %}
+{% include "header.html" %}
+
+<body>
+    {% block content %}
+    {% if user.is_authenticated %}
+    {% load static %}
+    {% include "registered_navbar.html" %}
+    {% else %}
+    {% load static %}
+    {% include "general_navbar.html" %}
+    {% endif %}
+    {% endblock %}<br><br><br>
+
+    <script>
+        categorySelection = "{{ category }}";
+        function setCategory() {
+            document.getElementById("category").value = categorySelection;
+        }
+        window.addEventListener("DOMContentLoaded", setCategory);
+    </script>
+
+    <div class="container mx-auto mb-4">
+        <div class="text-center mx-auto">
+            <p>PlayDate was built by a team of students come from SFSU CSC684 class.<br>
+                We really hope you enjoyed our website and get useful infomation.<br>
+                Your feedback will be valuable to help us improve out website!
+            </p><br>
+        </div>
+
+        <div class="row mx-auto">
+            <div class="col-lg-5 d-flex align-items-stretch">
+                <div class="card" style="width: 30rem;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h5>Location:</h5>
+                            <p>1600 Holloway Ave, San Francisco, CA 94132</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Email:</h5>
+                            <p>team03@sfsu.edu</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Call:</h5>
+                            <p>+1 415 555 5555</p>
+                        </li>
+                        <li>
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3155.8094989878605!2d-122.48212918462688!3d37.724149179768645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808f7db005c0e281%3A0xa57a7c9f946a45d3!2sSan%20Francisco%20State%20University!5e0!3m2!1sen!2sus!4v1657832762517!5m2!1sen!2sus"
+                                frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="col-lg-7 mt-3 mt-lg-0 d-flex align-items-stretch">
+                <div class="card" style="width: 50rem;">
+                    <form action="" method="post" role="form" class="mx-3 my-3">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="name">Your Name</label>
+                                <input type="text" name="name" class="form-control" id="name" value="{{name}}"
+                                    placeholder="e.g. 'John Doe'" required>
+                            </div>
+                            <div class="form-group col-md-6 mt-3 mt-md-0">
+                                <label for="name">Your Email</label>
+                                <input type="email" class="form-control" name="email" id="email" value="{{email}}"
+                                    placeholder="e.g. 'john.doe@gmail.com'" required>
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="name">Category</label>
+                            <select class="form-control" name="category" id="category" value="{{category}}">
+                                <option value="" selected="true" disabled>Select a category: </option>
+                                <option value="REP">Report User or Content</option>
+                                <option value="ONB">Registration Issues</option>
+                                <option value="BUG">PlayDate Not Working</option>
+                                <option value="OTH">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="name">Subject</label>
+                            <input type="text" class="form-control" name="subject" id="subject" value="{{subject}}"
+                                placeholder="e.g. 'Webpage is addictive!'" required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="name">Message</label>
+                            <textarea class="form-control" name="message" rows="10"
+                                placeholder="e.g. 'PlayDate is so good, I find myself using the application for hours and hours everyday!'"
+                                required>{{message}}</textarea>
+                        </div>
+                        <!-- <div class="my-3">
+                            <div class="loading">Loading</div>
+                            <div class="error-message"></div>
+                            <div class="sent-message">Your message has been sent. Thank you!</div>
+                        </div> -->
+                        <div class="text-center"><button class="btn btn-primary mt-3" type="submit">Send
+                                Message</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    {% include "notificationModal.html" %}
+    <footer class="text-center text-white bg-light sticky-bottom">
+        <!-- Grid container -->
+        <div class="container pt-3">
+            <!-- Section: Social media -->
+            <section>
+                <!-- Facebook -->
+                {% load static %}
+                <a href="#" class="mx-2"><img src="{% static 'media/facebook.png' %}"></a>
+
+                <!-- Instagram -->
+                <a href="#" class="mx-2"><img src="{% static 'media/instagram.png' %}"></a>
+
+                <!-- Twitter -->
+                <a href="#" class="mx-2"><img src="{% static 'media/twitter.png' %}"></a>
+
+                <!-- Tiktok -->
+                <a href="#" class="mx-2"><img src="{% static 'media/tiktok.png' %}"></a>
+
+                <!-- Reddit -->
+                <a href="#" class="mx-2"><img src="{% static 'media/reddit.png' %}"></a>
+
+                <!-- Github -->
+                <a href="#" class="mx-2"><img src="{% static 'media/github.png' %}"></a>
+            </section>
+            <!-- Section: Social media -->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center bg-light p-3">
+            <span class="text-dark ">
+                <a href="/termsofuse">Terms of Use | </a><a href="/privacy">Privacy Notice | </a><a
+                    href="/helpPage">Contact
+                    Us</a><br>
+            </span>
+            <span class="text-dark">Copyright © 2022 TheBabySitters. All rights reserved.</span>
+        </div>
+        <!-- Copyright -->
+    </footer>
+</body>
+
+</html>
